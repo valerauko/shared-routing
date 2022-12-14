@@ -1,4 +1,4 @@
-{:source-paths ["src" "dev"]
+{:source-paths ["src"]
 
  :dependencies
  [[clj-kondo "2022.06.22"]
