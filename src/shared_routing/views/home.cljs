@@ -1,5 +1,6 @@
 (ns shared-routing.views.home
-  (:require [shared-routing.routes :refer [href]]
+  (:require ; [shared-routing.routes :refer [href]]
+            [reitit.frontend.easy :refer [href]]
             [shared-routing.routes.web :as-alias web]))
 
 (defn home

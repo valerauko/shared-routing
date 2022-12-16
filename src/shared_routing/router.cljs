@@ -57,19 +57,33 @@
    [{route-name :name :as route} _]
    (conj route (route-defs route-name))))
 
+(defn expand-noproto
+  [data opts]
+  (cond
+    (keyword? data)
+    (expand-noproto {:name data} opts)
+
+    (map? data)
+    (reitit.core/expand (conj data (route-defs (:name data))) opts)
+
+    :else
+    (reitit.core/expand data opts)))
+
 (defn build-router
   []
   (reitit.frontend/router
    routes
    ; if i use a local anon function i can confirm it's passed
    ; the correct arguments
-   ; {:expand (fn [data opts]
-   ;            ;; here data is still a keyword
-   ;            (js/console.log "Raw data" (clj->js data))
-   ;            (js/console.log "Raw opts" (clj->js opts))
-   ;            ;; yet here when i pass it to the protocol it's somehow "lost"
-   ;            (expand data opts))}
-   {:expand expand}))
+   {:expand (fn [data opts]
+              ;; here data is still a keyword
+              ; (js/console.log "Raw data" (clj->js data))
+              ; (js/console.log "Raw opts" (clj->js opts))
+              ;; yet here when i pass it to the protocol it's somehow "lost"
+              ; (expand data opts)
+              ;; this without protocol works just fine
+              (expand-noproto data opts))}))
+   ; {:expand expand}))
 
 (defn on-navigate
   [new-match]

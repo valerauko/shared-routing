@@ -15,4 +15,4 @@
      (if (fn? view)
        [view]
        [:p
-        "Not found!"])]))
+        "Not found"])]))
