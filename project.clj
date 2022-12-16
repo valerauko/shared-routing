@@ -9,6 +9,7 @@
   :main ^:skip-aot shared-routing.core
   :target-path "target/%s"
   :profiles {:dev {:source-paths ["dev"]
+                   :resource-paths ["public"]
                    :dependencies [[org.clojure/tools.namespace "1.3.0"]]}
              :uberjar {:aot :all
                        :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}})
