@@ -28,6 +28,9 @@
   [route-name]
   (case route-name
     ::web/home
+    ;; these definitions can be *anything* that goes in a reitit route
+    ;; definition. these take precedence over anything a route might have
+    ;; defined at the shared route tree
     {:view #'home}
 
     ::web/ping

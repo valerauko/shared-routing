@@ -9,5 +9,6 @@
     "Hello from ping"]
    [:p
     [:a
+     ;; i don't like window.history.back kind of back buttons, what if external
      {:href (href ::web/home)}
      "Back to top"]]])
